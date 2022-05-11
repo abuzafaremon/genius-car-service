@@ -1,0 +1,13 @@
+.divider span {
+  height: 2px;
+  background-color: #ccc;
+  width: 100%;
+}
+
+.social-login .social-icon {
+  width: 30px;
+}
+
+.social-login .social-btn {
+  gap: 10px;
+}
