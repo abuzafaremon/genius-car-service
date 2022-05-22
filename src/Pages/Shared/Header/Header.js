@@ -22,8 +22,12 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="home#services">Services</Nav.Link>
-              <Nav.Link href="home#experts">Experts</Nav.Link>
+              <Nav.Link href="/home#services">Services</Nav.Link>
+              <Nav.Link href="/home#experts">Experts</Nav.Link>
+              {user && <>
+                <Nav.Link as={Link} to="/addservice">Add Service</Nav.Link>
+                <Nav.Link as={Link} to="/manage">Manage</Nav.Link>
+              </>}
               <Nav.Link as={Link} to="/about">About</Nav.Link>
               {user ? <button className='btn btn-link text-light text-decoration-none' onClick={handleSignOut}>Sign out</button> :
                 <Nav.Link as={Link} eventKey={2} to="/login">

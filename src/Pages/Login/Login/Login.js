@@ -9,6 +9,7 @@ import { async } from '@firebase/util';
 import Loading from '../../Shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -77,7 +78,10 @@ const Login = () => {
     }
   }
   return (
-    <div className='login container w-50 mx-auto m-5'>
+    <div className='login container w-50 mx-auto m-5 shadow'>
+      <Helmet>
+        <title>Login - Genius Car Service</title>
+      </Helmet>
       <h2 className='text-center text-primary mb-2'>Please Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" >
