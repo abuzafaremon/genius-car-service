@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
@@ -7,12 +8,19 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { async } from '@firebase/util';
 import Loading from '../../Shared/Loading/Loading';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet-async';
+import useToken from '../../../hooks/useToken';
 
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
   const [
     signInWithEmailAndPassword,
     user,
@@ -20,17 +28,13 @@ const Login = () => {
     error
   ] = useSignInWithEmailAndPassword(auth);
 
-  const navigate = useNavigate();
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
-  const location = useLocation();
-  let from = location.state?.from?.pathname || '/';
+  const [token] = useToken(user);
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
 
     // emailRef.current.value = '';
     // passwordRef.current.value = '';
@@ -49,7 +53,7 @@ const Login = () => {
     auth
   );
 
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
   if (loading || sending) {
@@ -103,7 +107,6 @@ const Login = () => {
       <p>Forgot Password? <button className='btn btn-link mb-1 text-decoration-none' onClick={resetPassword}>Reset Password</button></p>
       <p>New to genius car? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Please Register</Link></p>
       <SocialLogin></SocialLogin>
-      <ToastContainer />
     </div>
   );
 };

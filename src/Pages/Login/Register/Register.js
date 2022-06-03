@@ -6,6 +6,7 @@ import './Register.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
 import { Helmet } from 'react-helmet-async';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
   const [agree, setAgree] = useState(false);
@@ -18,6 +19,7 @@ const Register = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user);
   const navigate = useNavigate();
   const passwordRef = useRef();
   const navigateLogin = () => {
@@ -33,10 +35,10 @@ const Register = () => {
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
     alert('Updated profile');
-    navigate('/');
+
   }
-  if (user) {
-    console.log('user', user);
+  if (token) {
+    navigate('/');
   }
   if (loading || updating) {
     return <Loading />
