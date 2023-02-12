@@ -6,7 +6,7 @@ const ManageService = () => {
   const handleDelete = id => {
     const proceed = window.confirm('Are you sure?');
     if (proceed) {
-      const url = `https://frozen-eyrie-09644.herokuapp.com/service/${id}`;
+      const url = `https://genius-car-service-server-zafaremon20.vercel.app/service/${id}`;
       fetch(url, {
         method: 'DELETE'
       })

@@ -5,7 +5,7 @@ const AddService = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
-    const url = `https://frozen-eyrie-09644.herokuapp.com/service`;
+    const url = `https://genius-car-service-server-zafaremon20.vercel.app/service`;
     fetch(url, {
       method: 'POST',
       headers: {

@@ -13,7 +13,7 @@ const Order = () => {
 
     const getOrders = async () => {
       const email = user?.email;
-      const url = `https://frozen-eyrie-09644.herokuapp.com/order?email=${email}`;
+      const url = `https://genius-car-service-server-zafaremon20.vercel.app/order?email=${email}`;
       try {
         const { data } = await axiosPrivate.get(url);
         setOrders(data);

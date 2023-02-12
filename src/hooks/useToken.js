@@ -8,7 +8,7 @@ const useToken = user => {
     const getToken = async () => {
       const email = user?.user?.email;
       if (email) {
-        const { data } = await axios.post('https://frozen-eyrie-09644.herokuapp.com/login', { email });
+        const { data } = await axios.post('https://genius-car-service-server-zafaremon20.vercel.app/login', { email });
         setToken(data.accessToken);
         localStorage.setItem('accessToken', data.accessToken);
       }

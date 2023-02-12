@@ -23,7 +23,7 @@ const Checkout = () => {
       address: event.target?.address?.value,
       phone: event.target?.phone?.value
     }
-    axios.post('https://frozen-eyrie-09644.herokuapp.com/order', order)
+    axios.post('https://genius-car-service-server-zafaremon20.vercel.app/order', order)
       .then(response => {
         const { data } = response;
         if (data.insertedId) {
